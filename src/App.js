@@ -32,6 +32,7 @@ function App() {
   const [textInput2, setTextInput2] = useState("");
   const [textInput3, setTextInput3] = useState("");
   const [textInput4, setTextInput4] = useState("");
+  const [textInput5, setTextInput5] = useState("");
   const [selectedOption, setSelectedOption] = useState("");
 
   const handleInputChange = (e, setter) => {
@@ -42,35 +43,54 @@ function App() {
     setSelectedOption(e.target.value);
   };
 
+  const isDisabled = (inputValue) => {
+    return selectedOption === inputValue;
+  }
+
   return (
     <div className="App">
       <div className="left">
         <input
           type="text"
           value={textInput1}
+          placeholder="genre weight"
           onChange={(e) => handleInputChange(e, setTextInput1)}
+          disabled={isDisabled(1)}
         />
         <input
           type="text"
           value={textInput2}
+          placeholder="no genre weight"
           onChange={(e) => handleInputChange(e, setTextInput2)}
+          disabled={isDisabled(2)}
         />
         <input
           type="text"
           value={textInput3}
+          placeholder="top n"
           onChange={(e) => handleInputChange(e, setTextInput3)}
+          disabled={isDisabled(3)}
         />
         <input
           type="text"
           value={textInput4}
+          placeholder="num genres"
           onChange={(e) => handleInputChange(e, setTextInput4)}
+          disabled={isDisabled(4)}
+        />
+        <input
+          type="text"
+          value={textInput5}
+          placeholder="partial match"
+          onChange={(e) => handleInputChange(e, setTextInput5)}
+          disabled={isDisabled("j")}
         />
       </div>
       <div className="right">
         <select value={selectedOption} onChange={handleSelectChange}>
-          <option value="option1">Option 1</option>
-          <option value="option2">Option 2</option>
-          <option value="option3">Option 3</option>
+          <option value="j">Jaccard Model</option>
+          <option value="p">Partial Match Model</option>
+          <option value="s">Search Only</option>
         </select>
       </div>
     </div>
